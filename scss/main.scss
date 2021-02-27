@@ -1,24 +1,28 @@
-$primary-color: #272727;
-$accent-color: #ff652f;
-$text-color: #fff;
+@import './resets';
+@import './variables';
 
-$font-weight: (
-    "regular": 400,
-    "medium": 500,
-    "bold": 700
-);
+@function weight($weight-name){
+    @return map-get($font-weights, $weight-name )
+}
+
+@mixin flexCenter($direction){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
 
 body{
     background-color: $primary-color;
     color: $text-color;
-    font-weight: map-get($font-weight, bold );
 }
 .main{
     width:80%;
     margin: 0 auto;
+    @include flexCenter(column) ;
     
     #{&}_paragraph{
-        font-weight: map-get($font-weight, bold);
+        font-weight: weight(regular);
         color: $accent-color;
         &:hover{
             color: $text-color;
